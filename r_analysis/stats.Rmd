@@ -1,0 +1,74 @@
+
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(pheatmap)
+
+
+# LOAD EXAMPLE DATA
+
+fid <- read_csv( "example_fid_results.csv" )
+oracle <- read_csv(
+  "example_oracle_metrics.csv"
+)
+
+
+# FID SUMMARY
+
+fid_summary <- fid %>% 
+  group_by(model) %>% 
+  summarise( mean_fid = mean(fid), sd_fid = sd(fid) ) 
+  
+print(fid_summary)
+
+# FID BOXPLOT 
+ 
+p_fid_box <- ggplot( fid, aes( x = model, y = fid, fill = model ) ) + geom_boxplot() + theme_minimal(base_size = 14) + labs( title = "FID comparison", x = "Caption strategy", y = "FID" ) 
+
+print(p_fid_box)
+
+# FID HEATMAP 
+
+p_fid_heat <- ggplot( fid, aes( x = model, y = class, fill = fid ) ) + geom_tile( color = "white" ) + geom_text( aes( label = round(fid, 1) ), size = 4 ) + theme_minimal(base_size = 14) + labs( title = "Per-class FID heatmap" ) 
+
+print(p_fid_heat)
+
+# ORACLE SUMMARY
+
+oracle_summary <- oracle %>%
+  group_by(model) %>%
+  summarise(
+    mean_f1 = mean(f1),
+    mean_confidence = mean(confidence)
+  )
+
+print(oracle_summary)
+
+# ORACLE F1 BOXPLOT
+
+p_oracle_box <- ggplot( oracle, aes( x = model, y = f1, fill = model ) ) + geom_boxplot() + theme_minimal(base_size = 14) + labs( title = "Oracle F1-score comparison", x = "Caption strategy", y = "F1-score" ) 
+
+print(p_oracle_box)
+
+# ORACLE HEATMAP
+
+p_oracle_heat <- ggplot( oracle, aes( x = model, y = class, fill = f1 ) ) + geom_tile( color = "white" ) + geom_text( aes( label = round(f1, 2) ), size = 4 ) + theme_minimal(base_size = 14) + labs( title = "Oracle F1-score heatmap" ) 
+
+print(p_oracle_heat) 
+
+# TOP CONFUSIONS 
+
+top_confusions <- oracle %>% select( model, class, most_confused_with, confusion_rate ) %>% filter( confusion_rate >= 0.10 ) 
+
+print(top_confusions) 
+
+# KRUSKAL-WALLIS TEST 
+
+kruskal.test( f1 ~ model, data = oracle ) 
+
+# FID / ORACLE CORRELATION 
+
+merged <- inner_join( oracle, fid, by = c("model", "class") ) 
+
+cor.test( merged$fid, merged$f1, method = "spearman" )

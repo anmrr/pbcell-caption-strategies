@@ -1,4 +1,4 @@
-# PBCell Caption Strategies for Hematological Image Generation
+# Stable Diffusion Model for Peripheral Blood Cell Image Generation
 
 Fine-tuning of Stable Diffusion 2.1 for synthetic peripheral blood cell image generation using different semantic conditioning strategies.
 
@@ -233,7 +233,7 @@ The public version includes lightweight reproducible examples rather than the co
 
 ```bibtex
 @misc{pbcell_diffusion_2026,
-  title={PBCell Caption Strategies for Hematological Image Generation},
+  title={Stable Diffusion Model for Peripheral Blood Cell Image Generation},
   author={Rosero, Angie},
   year={2026}
 }

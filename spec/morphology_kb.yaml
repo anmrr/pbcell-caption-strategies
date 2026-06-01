@@ -1,0 +1,35 @@
+{
+  "feature_schema": {
+
+    "size": {
+      "allowed": [
+        "small",
+        "intermediate",
+        "large"
+      ]
+    },
+
+    "nucleus_shape": {
+      "allowed": [
+        "round",
+        "segmented",
+        "irregular"
+      ]
+    },
+
+    "chromatin_texture": {
+      "allowed": [
+        "condensed",
+        "loose"
+      ]
+    },
+
+    "cytoplasm_color": {
+      "allowed": [
+        "basophilic",
+        "eosinophilic",
+        "grayish"
+      ]
+    }
+  }
+}

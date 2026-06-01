@@ -1,0 +1,59 @@
+# Stable Diffusion 2.1 fine-tuning configuration
+
+# Expert-refined hematological caption
+
+experiment_name: expert_caption
+output_dir: outputs/expert_caption
+seed: 42
+
+# Dataset
+
+train_csv: data/example_dataset.csv
+image_dir: data/images_768
+image_dataset: example/pbcell_images
+
+caption_column: expert_caption
+fixed_prompt: null
+resolution: 768
+
+# Base model
+
+pretrained_model: sd2-community/stable-diffusion-2-1
+train_text_encoder: false
+
+# Training
+
+train_batch_size: 2
+gradient_accumulation_steps: 2
+learning_rate: 1.5e-6
+
+lr_scheduler: constant
+lr_warmup_steps: 0
+max_train_steps: 5000
+
+adam_beta1: 0.9
+adam_beta2: 0.999
+adam_weight_decay: 0.01
+adam_epsilon: 1.0e-8
+max_grad_norm: 1.0
+
+# Precision
+
+mixed_precision: fp16
+
+# Checkpoints
+
+checkpointing_steps: 1250
+resume_from_checkpoint: null
+
+# Validation prompts
+
+validation_prompts:
+
+* "A Basophil cell with intermediate size, nucleus obscured by dense granules..."
+* "A Erythroblast cell with small size, high N/C ratio..."
+* "A Monocyte cell with large size, medium N/C ratio..."
+* "A Platelet with small size, moderate grayish cytoplasm..."
+
+validation_steps: 1250
+num_validation_images: 4

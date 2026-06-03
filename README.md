@@ -195,6 +195,16 @@ The example CSV demonstrates the expected structure for:
 
 ---
 
+## Dataset Source
+
+This project uses peripheral blood smear images derived from the public dataset introduced by:
+
+Acevedo, A. et al. *A dataset of microscopic peripheral blood cell images for development of automatic recognition systems*. Data in Brief, 30, 105474 (2020). https://doi.org/10.1016/j.dib.2020.105474
+
+The original dataset contains annotated MGG-stained peripheral blood cell images acquired using a Cellavision DM96 microscope system.
+
+---
+
 # Interactive Visualization Tools
 
 The `colab/` directory contains lightweight interactive utilities for:

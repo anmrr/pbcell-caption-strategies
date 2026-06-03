@@ -244,7 +244,7 @@ The public version includes lightweight reproducible examples rather than the co
 ```bibtex
 @misc{pbcell_diffusion_2026,
   title={Stable Diffusion Model for Peripheral Blood Cell Image Generation},
-  author={Rosero, Angie},
+  author={Rosero, Angie M},
   year={2026}
 }
 ```
